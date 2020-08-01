@@ -1,35 +1,21 @@
 import React from 'react';
 import {useFetchGifs} from '../hooks/useFetchGifs'
 
-// import {GifGridItem} from './GifGridItem'
-// import {getGif} from '../helpers/getGif'
+import {GifGridItem} from './GifGridItem'
+
 
 
 const GifGrid = ({category}) => {
 
-    const {data, loading} = useFetchGifs();
-
-    console.log(loading)
-    console.log(data)
-
-    // const [images, setimages]= useState([]);
-
-    //Ejecuto la funcion http en useEffect que funciona como
-    //DidunMount - se monta una sola vez al inicio
-
-    // useEffect(()=>{
-    //     getGif(category)
-    //     .then(setimages); 
-    // },[category])
-
+    const {data:images, loading} = useFetchGifs(category);
       
 
     return (
         <>
-            <h3>{category}</h3>
+            <h3 className="animate__animated animate__fadeIn">{category}</h3>
 
-            {loading ? 'Cargando...':'Data cargada'}
-        {/* <div className="card-grid">
+            {loading && <p className="animate__animated animate__flash">Loading...</p>}
+        <div className="card-grid">
           
                 {images.map(img=>
                     <GifGridItem 
@@ -40,7 +26,7 @@ const GifGrid = ({category}) => {
                     // <li key={img.id}>{img.title}</li>
                 )}
             
-        </div> */}
+        </div>
         </>
     )
 }
