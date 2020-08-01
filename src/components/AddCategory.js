@@ -16,7 +16,7 @@ const AddCategory = ({setCategories}) => {
         //Validar que no sea un string vacio y que tenga 2 letras por lo menos
         if(inputValue.trim().length>2){
 
-            setCategories(cats=>[...cats, inputValue]) //agrego lo que hay en el input a mi arreglo
+            setCategories(cats=>[inputValue, ...cats]) //agrego lo que hay en el input a mi arreglo
             // console.log('se hizo el submit')
             setInputValue('')
         }

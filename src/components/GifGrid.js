@@ -1,35 +1,47 @@
 import React from 'react';
-import axios from 'axios';
+import {useFetchGifs} from '../hooks/useFetchGifs'
+
+// import {GifGridItem} from './GifGridItem'
+// import {getGif} from '../helpers/getGif'
+
 
 const GifGrid = ({category}) => {
 
-    const getGif= async()=>{
-        const url='http://api.giphy.com/v1/gifs/search?q=ricky+and+morty&limit=10&api_key=yGsEUd2oFkyppcVxZBZ5H2aB7uQLZRIf'
-        const {data} = await axios.get(url)
-        try {
-            console.log(data.data)
-        } catch (error) {
-            console.error(error)
-        }
+    const {data, loading} = useFetchGifs();
 
-        const gifs = data.data.map(img=>{
-           return{
-               id:img.id,
-               title:img.title,
-               url:img.images.downsized_medium.url
-           }
+    console.log(loading)
+    console.log(data)
 
-        })
+    // const [images, setimages]= useState([]);
 
-        console.log(gifs)
-    }
+    //Ejecuto la funcion http en useEffect que funciona como
+    //DidunMount - se monta una sola vez al inicio
 
-    getGif();
+    // useEffect(()=>{
+    //     getGif(category)
+    //     .then(setimages); 
+    // },[category])
+
+      
 
     return (
-        <div>
+        <>
             <h3>{category}</h3>
-        </div>
+
+            {loading ? 'Cargando...':'Data cargada'}
+        {/* <div className="card-grid">
+          
+                {images.map(img=>
+                    <GifGridItem 
+                    key={img.id}
+                    // img={img} 
+                    {...img} //mando la info como un objeto
+                    />
+                    // <li key={img.id}>{img.title}</li>
+                )}
+            
+        </div> */}
+        </>
     )
 }
 

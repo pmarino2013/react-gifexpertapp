@@ -18,9 +18,11 @@ const GifExpertApp=()=>{
     return(
         <>
         <h2>GifExpertApp</h2>
+        {/* Campo de texto donde se ingresa la categoria a buscar */}
         <AddCategory setCategories={setCategories} />
         <hr/>
         <ol>
+            {/*Espacio donde se muestran las tarjetas*/}
             {categories.map(category=>(
                 <GifGrid  
                 key={category}
